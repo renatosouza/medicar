@@ -1,8 +1,13 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from datetime import date
 
 
 class Especialidade(models.Model):
     nome = models.CharField(max_length=40)
+
+    class Meta:
+        ordering = ['nome']
 
     def __str__(self):
         return self.nome
@@ -17,16 +22,29 @@ class Medico(models.Model):
                                       related_name='medicos', 
                                       on_delete=models.CASCADE)
     
+    class Meta:
+        ordering = ['nome']
+    
     def __str__(self):
         return self.nome
 
 
 class Agenda(models.Model):
-    medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
     data = models.DateField()
+    medico = models.ForeignKey(Medico, 
+                               on_delete=models.CASCADE, 
+                               unique_for_date='data')
+
+    class Meta:
+        ordering = ['data']
 
     def __str__(self):
         return '%s - %s' % (self.medico, self.data)
+
+    def clean(self):
+        if self.data < date.today() :
+            raise ValidationError('Data passada!')
+        
 
 
 class Horario(models.Model):
@@ -34,6 +52,9 @@ class Horario(models.Model):
     agenda = models.ForeignKey(Agenda, 
                                related_name='horarios', 
                                on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ['horario']
 
 
 class Consulta(models.Model):
@@ -44,3 +65,6 @@ class Consulta(models.Model):
     cliente = models.ForeignKey('auth.User', 
                                 related_name='consultas', 
                                 on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ['data', 'horario']

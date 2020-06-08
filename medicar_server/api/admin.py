@@ -3,7 +3,11 @@ from .models import Especialidade, Medico, Agenda, Horario
 
 
 admin.site.register(Especialidade)
-admin.site.register(Medico)
+
+
+@admin.register(Medico)
+class MedicoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'crm', 'email', 'telefone', 'especialidade')
 
 
 class HorarioInline(admin.TabularInline):
@@ -12,6 +16,5 @@ class HorarioInline(admin.TabularInline):
 
 @admin.register(Agenda)
 class AgendaAdmin(admin.ModelAdmin):
-    inlines = [
-        HorarioInline,
-    ]
+    inlines = [HorarioInline]
+    list_display = ('medico', 'data')
