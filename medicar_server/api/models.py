@@ -4,6 +4,9 @@ from django.db import models
 class Especialidade(models.Model):
     nome = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.nome
+
 
 class Medico(models.Model):
     nome = models.CharField(max_length=40)
@@ -12,12 +15,18 @@ class Medico(models.Model):
     telefone = models.CharField(max_length=20, blank=True)
     especialidade = models.ForeignKey(Especialidade, 
                                       related_name='medicos', 
-                                      on_delete=models.CASCADE)    
+                                      on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.nome
 
 
 class Agenda(models.Model):
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
     data = models.DateField()
+
+    def __str__(self):
+        return '%s - %s' % (self.medico, self.data)
 
 
 class Horario(models.Model):
