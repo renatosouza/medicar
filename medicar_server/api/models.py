@@ -6,9 +6,6 @@ from datetime import date
 class Especialidade(models.Model):
     nome = models.CharField(max_length=40)
 
-    class Meta:
-        ordering = ['nome']
-
     def __str__(self):
         return self.nome
 
@@ -21,9 +18,6 @@ class Medico(models.Model):
     especialidade = models.ForeignKey(Especialidade, 
                                       related_name='medicos', 
                                       on_delete=models.CASCADE)
-    
-    class Meta:
-        ordering = ['nome']
     
     def __str__(self):
         return self.nome
