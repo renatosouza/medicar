@@ -28,6 +28,7 @@ class Agenda(models.Model):
     medico = models.ForeignKey(Medico, 
                                on_delete=models.CASCADE, 
                                unique_for_date='data')
+    valida = models.BooleanField(default=True, editable=False)
 
     class Meta:
         ordering = ['data']
@@ -46,6 +47,7 @@ class Horario(models.Model):
     agenda = models.ForeignKey(Agenda, 
                                related_name='horarios', 
                                on_delete=models.CASCADE)
+    valido = models.BooleanField(default=True, editable=False)
     
     class Meta:
         ordering = ['horario']
