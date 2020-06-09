@@ -5,6 +5,7 @@ from api import views
 
 urlpatterns = [
     path('especialidades/', views.EspecialidadeList.as_view(), name='especialidade_list'),
+    path('medicos/', views.MedicoList.as_view(), name='medico_list'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
