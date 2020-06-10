@@ -24,20 +24,20 @@ class Medico(models.Model):
 
 
 class Agenda(models.Model):
-    data = models.DateField()
+    dia = models.DateField()
     medico = models.ForeignKey(Medico, 
                                on_delete=models.CASCADE, 
-                               unique_for_date='data')
+                               unique_for_date='dia')
     valida = models.BooleanField(default=True, editable=False)
 
     class Meta:
-        ordering = ['data']
+        ordering = ['dia']
 
     def __str__(self):
-        return '%s - %s' % (self.medico, self.data)
+        return '%s - %s' % (self.medico, self.dia)
 
     def clean(self):
-        if self.data < date.today() :
+        if self.dia < date.today() :
             raise ValidationError('Data passada!')
         
 
@@ -54,7 +54,7 @@ class Horario(models.Model):
 
 
 class Consulta(models.Model):
-    data = models.DateField()
+    dia = models.DateField()
     horario = models.ForeignKey(Horario, on_delete=models.CASCADE)
     data_agendamento = models.DateTimeField(auto_now_add=True)
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
@@ -63,4 +63,4 @@ class Consulta(models.Model):
                                 on_delete=models.CASCADE)
     
     class Meta:
-        ordering = ['data', 'horario']
+        ordering = ['dia', 'horario']

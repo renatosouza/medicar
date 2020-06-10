@@ -10,6 +10,7 @@ urlpatterns = [
     path('agendas/', views.AgendaList.as_view(), name='agenda_list'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('register/', views.UserCreate.as_view(), name='register'),
+    path('consultas/', views.ConsultaCreate.as_view(), name='consulta_list'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

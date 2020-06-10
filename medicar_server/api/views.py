@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.db.models import Q, Count
-from rest_framework import permissions
+from rest_framework import permissions, status
+from rest_framework.response import Response
 from drf_rw_serializers import generics
 from datetime import datetime, date
 from django.contrib.auth.models import User
-from .models import Especialidade, Medico, Agenda, Horario
+from .models import Especialidade, Medico, Agenda, Horario, Consulta
 from .serializers import (
-    EspecialidadeSerializer, MedicoSerializer, AgendaSerializer, UserSerializer)
+    EspecialidadeSerializer, MedicoSerializer, AgendaSerializer, 
+    UserSerializer, ConsultaCreateSerializer, ConsultaSerializer)
 
 
 class EspecialidadeList(generics.ListAPIView):
@@ -54,14 +56,14 @@ class AgendaList(generics.ListAPIView):
         # Invalida os horarios de dias passados
         # e de hoje caso o horario ja tenha passado
         Horario.objects.filter(
-            Q(agenda__data__lt=date.today()) 
-            | (Q(agenda__data=date.today()) 
+            Q(agenda__dia__lt=date.today()) 
+            | (Q(agenda__dia=date.today()) 
                & Q(horario__lt=datetime.now().time()))
             ).update(valido=False)
         # Invalida as agendas de datas passadas
         # ou aquelas sem horarios validos
         Agenda.objects.filter(
-            Q(data__lt=date.today()) 
+            Q(dia__lt=date.today()) 
             | ~Q(horarios__valido=True)
             ).update(valida=False)
         
@@ -86,8 +88,7 @@ class AgendaList(generics.ListAPIView):
         data_inicio = self.request.query_params.get('data_inicio', None)
         data_final= self.request.query_params.get('data_final', None)
         if data_inicio and data_final:
-            
-            queryset = queryset.filter(data__range=(data_inicio, data_final))
+            queryset = queryset.filter(dia__range=(data_inicio, data_final))
         
         return queryset
     
@@ -96,3 +97,22 @@ class UserCreate(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
+    
+    
+class ConsultaCreate(generics.ListCreateAPIView):
+    write_serializer_class = ConsultaCreateSerializer
+    read_serializer_class = ConsultaSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        user = self.request.user
+        apenas_futuras_consultas_condition = (
+            Q(dia__gt=date.today()) 
+            | (Q(dia=date.today()) 
+               & Q(horario__horario__gte=datetime.now().time())))
+        
+        if user.is_staff:
+            return Consulta.objects.all()
+        
+        return Consulta.objects.filter(cliente=self.request.user).filter(
+            apenas_futuras_consultas_condition)
