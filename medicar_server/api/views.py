@@ -3,9 +3,10 @@ from django.db.models import Q, Count
 from rest_framework import permissions
 from drf_rw_serializers import generics
 from datetime import datetime, date
+from django.contrib.auth.models import User
 from .models import Especialidade, Medico, Agenda, Horario
 from .serializers import (
-    EspecialidadeSerializer, MedicoSerializer, AgendaSerializer)
+    EspecialidadeSerializer, MedicoSerializer, AgendaSerializer, UserSerializer)
 
 
 class EspecialidadeList(generics.ListAPIView):
@@ -89,3 +90,9 @@ class AgendaList(generics.ListAPIView):
             queryset = queryset.filter(data__range=(data_inicio, data_final))
         
         return queryset
+    
+    
+class UserCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
