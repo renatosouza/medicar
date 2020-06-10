@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Q, Count
-from rest_framework.response import Response
+from rest_framework import permissions
 from drf_rw_serializers import generics
 from datetime import datetime, date
 from .models import Especialidade, Medico, Agenda, Horario
@@ -10,6 +10,7 @@ from .serializers import (
 
 class EspecialidadeList(generics.ListAPIView):
     read_serializer_class = EspecialidadeSerializer
+    permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
         queryset = Especialidade.objects.all()
@@ -21,6 +22,7 @@ class EspecialidadeList(generics.ListAPIView):
     
 class MedicoList(generics.ListAPIView):
     read_serializer_class = MedicoSerializer
+    permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
         # Dados iniciais
@@ -45,6 +47,7 @@ class MedicoList(generics.ListAPIView):
 
 class AgendaList(generics.ListAPIView):
     read_serializer_class = AgendaSerializer
+    permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
         # Invalida os horarios de dias passados
