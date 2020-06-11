@@ -99,7 +99,7 @@ class UserCreate(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
     
     
-class ConsultaCreate(generics.ListCreateAPIView):
+class ConsultaList(generics.ListCreateAPIView):
     write_serializer_class = ConsultaCreateSerializer
     read_serializer_class = ConsultaSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -118,7 +118,7 @@ class ConsultaCreate(generics.ListCreateAPIView):
             apenas_futuras_consultas_condition)
         
         
-class ConsultaDelete(generics.RetrieveDestroyAPIView):
+class ConsultaDetail(generics.RetrieveDestroyAPIView):
     serializer_class = ConsultaSerializer
     permission_classes = [permissions.IsAuthenticated]
     
