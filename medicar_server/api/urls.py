@@ -11,6 +11,7 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('register/', views.UserCreate.as_view(), name='register'),
     path('consultas/', views.ConsultaCreate.as_view(), name='consulta_list'),
+    path('consultas/<int:pk>/', views.ConsultaDelete.as_view(), name='consulta_detail'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

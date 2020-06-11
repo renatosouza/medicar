@@ -116,3 +116,21 @@ class ConsultaCreate(generics.ListCreateAPIView):
         
         return Consulta.objects.filter(cliente=self.request.user).filter(
             apenas_futuras_consultas_condition)
+        
+        
+class ConsultaDelete(generics.RetrieveDestroyAPIView):
+    serializer_class = ConsultaSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        user = self.request.user
+        apenas_futuras_consultas_condition = (
+            Q(dia__gt=date.today()) 
+            | (Q(dia=date.today()) 
+               & Q(horario__horario__gte=datetime.now().time())))
+        
+        if user.is_staff:
+            return Consulta.objects.all()
+        
+        return Consulta.objects.filter(cliente=self.request.user).filter(
+            apenas_futuras_consultas_condition)

@@ -3,7 +3,6 @@ from .models import Especialidade, Medico, Agenda, Horario, Consulta
 
 
 admin.site.register(Especialidade)
-admin.site.register(Consulta)
 
 @admin.register(Medico)
 class MedicoAdmin(admin.ModelAdmin):
