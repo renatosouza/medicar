@@ -3,7 +3,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from django.contrib.auth.models import User
 from django.urls import reverse
-from api.models import Especialidade
+from api.models import Especialidade, Medico
 
 
 class MedicarAPITests(APITestCase):
@@ -14,22 +14,45 @@ class MedicarAPITests(APITestCase):
         token = Token.objects.create(user=self.user)
         self.client = APIClient()
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
-        self.especialidade1_data = {
+        especialidade1_data = {
             'nome': 'Pediatria'
         }
-        self.especialidade2_data = {
+        especialidade2_data = {
             'nome': 'Ginecologia'
         }
-        self.especialidade3_data = {
+        especialidade3_data = {
             'nome': 'Cardiologia'
         }
-        self.especialidade4_data = {
+        especialidade4_data = {
             'nome': 'Clínico Geral'
         }
-        Especialidade.objects.create(**self.especialidade1_data)
-        Especialidade.objects.create(**self.especialidade2_data)
-        Especialidade.objects.create(**self.especialidade3_data)
-        Especialidade.objects.create(**self.especialidade4_data)
+        especialidade1 = Especialidade.objects.create(
+            **especialidade1_data)
+        especialidade2 = Especialidade.objects.create(
+            **especialidade2_data)
+        especialidade3 = Especialidade.objects.create(
+            **especialidade3_data)
+        especialidade4 = Especialidade.objects.create(
+            **especialidade4_data)
+        
+        self.medico1_data = {
+            'nome': 'Drauzio Varella',
+            'crm': 3711,
+            'especialidade': especialidade1
+        }
+        self.medico2_data = {
+            'nome': 'Gregory House',
+            'crm': 2544,
+            'especialidade': especialidade3
+        }
+        self.medico3_data = {
+            'nome': 'Tony Tony Chopper',
+            'crm': 3087,
+            'especialidade': especialidade1
+        }
+        Medico.objects.create(**self.medico1_data)
+        Medico.objects.create(**self.medico2_data)
+        Medico.objects.create(**self.medico3_data)
         
         
     def test_get_especialidades(self):
@@ -44,4 +67,14 @@ class MedicarAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
         
-    
+    def test_get_medicos(self):
+        url = reverse('medico_list')
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 3)
+        
+    def test_get_medicos_filtrados(self):
+        url = '/api/medicos/?search=re&especialidade=1&especialidade=3'
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
