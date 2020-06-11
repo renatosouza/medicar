@@ -114,7 +114,7 @@ class MedicarAPITests(APITestCase):
             'horario': '10:00',
             'agenda': agenda3
         }
-        Horario.objects.create(**horario2_1_data)
+        Horario.objects.create(**horario3_1_data)
         
         ## Agenda invalida (sem horarios)
         agenda4_data = {
@@ -123,9 +123,25 @@ class MedicarAPITests(APITestCase):
         }
         agenda4 = Agenda.objects.create(**agenda4_data)
         
+        # Prepopula as consultas
+        consulta1_data = {
+            'agenda_id': 1,
+            'horario': '14:00'
+        }
+        consulta2_data = {
+            'agenda_id': 1,
+            'horario': '16:00'
+        }
+        consulta3_data = {
+            'agenda_id': 2,
+            'horario': '09:30'
+        }
+        self.client.post('/consultas/', consulta1_data, format='json')
+        self.client.post('/consultas/', consulta2_data, format='json')
+        self.client.post('/consultas/', consulta3_data, format='json')
         
-        
-        
+    
+    # Testes no endpoint de Especialidades
     def test_get_especialidades(self):
         url = reverse('especialidade_list')
         response = self.client.get(url, format='json')
@@ -137,7 +153,9 @@ class MedicarAPITests(APITestCase):
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
-        
+    
+    
+    # Testes no endpoint de Medicos    
     def test_get_medicos(self):
         url = reverse('medico_list')
         response = self.client.get(url, format='json')
@@ -150,6 +168,8 @@ class MedicarAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 2)
         
+        
+    # Testes no endpoint de Agendas    
     def test_get_agendas(self):
         url = reverse('agenda_list')
         response = self.client.get(url, format='json')
@@ -164,3 +184,57 @@ class MedicarAPITests(APITestCase):
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
+        
+        
+    # Testes no endpoint de Consultas
+    def test_get_consultas(self):
+        url = reverse('consulta_list')
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 3)
+        
+    def test_create_consulta(self):
+        url = reverse('consulta_list')
+        data = {
+            'agenda_id': 2,
+            'horario': '09:00',
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        
+    def test_create_consulta_passado(self):
+        url = reverse('consulta_list')
+        data = {
+            'agenda_id': 3,
+            'horario': '10:00',
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_create_consulta_existente(self):
+        url = reverse('consulta_list')
+        data = {
+            'agenda_id': 1,
+            'horario': '16:00',
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_create_consulta_cliente_ocupado(self):
+        url = reverse('consulta_list')
+        data = {
+            'agenda_id': 2,
+            'horario': '14:00',
+        }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        
+    def test_delete_consulta(self):
+        url = '/consultas/3/'
+        response = self.client.delete(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        
+    def test_delete_consulta_inexistente(self):
+        url = '/consultas/10/'
+        response = self.client.delete(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

@@ -73,6 +73,20 @@ class ConsultaCreateSerializer(serializers.Serializer):
         agenda = None
         horario = None
         try:
+            # Invalida os horarios de dias passados
+            # e de hoje caso o horario ja tenha passado
+            Horario.objects.filter(
+                Q(agenda__dia__lt=date.today()) 
+                | (Q(agenda__dia=date.today()) 
+                   & Q(horario__lt=datetime.now().time()))
+                ).update(valido=False)
+            # Invalida as agendas de datas passadas
+            # ou aquelas sem horarios validos
+            Agenda.objects.filter(
+                Q(dia__lt=date.today()) 
+                | ~Q(horarios__valido=True)
+                ).update(valida=False)
+            
             agenda = Agenda.objects.get(id=data['agenda_id'], 
                                         valida=True)
             horario = Horario.objects.get(agenda=agenda.id, 
@@ -85,7 +99,6 @@ class ConsultaCreateSerializer(serializers.Serializer):
         
         user = self.context['request'].user
         try:
-            print(agenda.dia)
             consulta = Consulta.objects.get(dia=agenda.dia, 
                                             horario__horario=horario.horario, 
                                             cliente=user)
