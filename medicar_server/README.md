@@ -68,7 +68,7 @@ POST /especialidades/
 {
   "username": "renato",
   "email": "renato@renato.com",
-  "password": "password
+  "password": "password"
 }
 ```
 
