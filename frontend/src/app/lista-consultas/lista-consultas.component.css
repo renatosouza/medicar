@@ -1,0 +1,103 @@
+.lista-consultas {
+    /* Rectangle 19 */
+    position: absolute;
+    width: 627px;
+    height: 688px;
+    left: 369px;
+    top: 60px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+.titulo-lista {
+    /* Consulta Clínica */
+
+    position: absolute;
+    width: 132px;
+    height: 21px;
+    left: 8px;
+    top: 18px;
+
+    /* Button */
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    /* Black */
+
+    color: #444444;
+}
+
+.botao {
+    /* Rectangle 3 */
+
+    position: absolute;
+    width: 138px;
+    height: 24px;
+    right: 8px;
+    top: 16px;
+
+    background: #49B4BB;
+    border-radius: 4px;
+}
+
+.icone {
+    /* fa-solid:plus */
+
+    position: absolute;
+    width: 10.5px;
+    height: 12px;
+    left: 12px;
+    top: 6px;
+}
+
+.texto {
+    /* Nova Consulta */
+
+    position: absolute;
+    width: 97px;
+    height: 13px;
+    left: 29px;
+    top: 6px;
+
+    /* Body */
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+table {
+    table-layout: fixed;
+    position: absolute;
+    left: 8px;
+    top: 50px;
+    width: 611px;
+}
+
+tr {
+    /* Rectangle 9 */
+
+    /* width: 611px; */
+    height: 32px;
+}
+
+tr.gray {
+    background: #F8F8F8;
+}
