@@ -44,8 +44,6 @@
     justify-content: space-evenly;
     align-self: center;
     /* align-content: center; */
-
-    /* border: 1px solid #ccc; */
 }
 
 .item {
@@ -64,7 +62,6 @@
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-
     
 }
 
@@ -77,58 +74,47 @@ select:focus, select:valid {
     background-color: #FFFFFF;
 }
 
+
 .botoes {
     
     margin: 0 auto;
     width: 600px;
-    
-    
-    /* border: 1px solid #ccc; */
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.botao-cancelar {
-    text-decoration: none;
+.botao {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+
     width: 180px;
     height: 40px;
-
-    color: #49B4BB;
-    
     border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} 
-
-.botao-confirmar {
-    width: 180px;
-    height: 40px;
-
-    border: none;
-    font: inherit;
-    cursor: pointer;
-    border-radius: 8px;
-    
-    color: #FFFFFF;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.botao-confirmar:disabled {
+.cancelar {
+    text-decoration: none;
+    color: #49B4BB;
+} 
+
+.confirmar {
+    border: none;
+    color: #FFFFFF;
+}
+
+.confirmar:disabled {
     background: #D9F1F3;
 }
 
-.botao-confirmar:enabled {
+.confirmar:enabled {
     background: #49B4BB;
     cursor: pointer;
 }
