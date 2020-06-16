@@ -1,24 +1,36 @@
 .lista-consultas {
-    /* Rectangle 19 */
-    position: absolute;
-    width: 627px;
-    height: 688px;
-    left: 369px;
-    top: 60px;
+    /* position: absolute; */
+    width: 800px;
+    height: 788px;
+    margin: 0 auto;
+    /* left: 369px;
+    top: 60px; */
 
     background: #FFFFFF;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.top-lista {
+    width: 750px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid #ccc; */
 }
 
 .titulo-lista {
-    /* Consulta Clínica */
-
-    position: absolute;
+    /* position: absolute; */
     width: 132px;
     height: 21px;
-    left: 8px;
-    top: 18px;
+    /* left: 8px;
+    top: 18px; */
 
     /* Button */
 
@@ -26,69 +38,70 @@
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
-    line-height: 21px;
+    /* line-height: 21px; */
     /* identical to box height */
-
-    display: flex;
-    align-items: center;
-
-    /* Black */
 
     color: #444444;
 }
 
-.botao {
+.botao-marcar {
     /* Rectangle 3 */
-
-    position: absolute;
+    text-decoration: none;
+    /* position: absolute; */
     width: 138px;
     height: 24px;
-    right: 8px;
-    top: 16px;
+    /* right: 8px;
+    top: 16px; */
 
     background: #49B4BB;
     border-radius: 4px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.icone {
-    /* fa-solid:plus */
-
-    position: absolute;
+.botao-marcar .icone {
+    /* position: absolute; */
     width: 10.5px;
     height: 12px;
-    left: 12px;
-    top: 6px;
+    /* left: 12px;
+    top: 6px; */
 }
 
-.texto {
-    /* Nova Consulta */
-
-    position: absolute;
-    width: 97px;
-    height: 13px;
-    left: 29px;
-    top: 6px;
-
-    /* Body */
-
+.botao-marcar .texto {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    /* line-height: 16px; */
+    /* display: flex;
+    align-items: center; */
+    /* text-align: center; */
 
     color: #FFFFFF;
 }
 
+
 table {
     table-layout: fixed;
-    position: absolute;
+    text-align: left;
+    /* position: absolute;
     left: 8px;
-    top: 50px;
-    width: 611px;
+    top: 50px; */
+    width: 770px;
+    margin: 0 auto;
+    
+}
+
+th {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #A8A8A8;
 }
 
 tr {
@@ -100,4 +113,48 @@ tr {
 
 tr.gray {
     background: #F8F8F8;
+}
+
+td {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #444444;
+}
+
+.botao-desmarcar {
+    /* Rectangle 3 */
+    text-decoration: none;
+    /* position: absolute; */
+    /* width: 138px;
+    height: 24px; */
+    /* right: 8px;
+    top: 16px; */
+
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.botao-desmarcar .icone {
+    /* position: absolute; */
+    width: 15.5px;
+    height: 17px;
+    /* left: 12px;
+    top: 6px; */
+}
+
+.botao-desmarcar .texto {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+
+    color: #49B4BB;
+
+    margin-left: 10px;
 }
