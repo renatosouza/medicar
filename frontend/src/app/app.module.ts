@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ListaConsultasComponent } from './lista-consultas/lista-consultas.component';
 import { NovaConsultaComponent } from './nova-consulta/nova-consulta.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ListaConsultasComponent,
-    NovaConsultaComponent
+    NovaConsultaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

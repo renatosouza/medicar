@@ -1,0 +1,166 @@
+.login {
+    position: relative;
+}
+
+img {
+    position: absolute;
+    width: 180.74px;
+    height: 50px;
+
+    left: 483px;
+    top: 235px;
+}
+
+#username {
+    position: absolute;
+    width: 400px;
+    height: 40px;
+    left: 483px;
+    top: 325px;
+
+    /* White */
+
+    background: #FFFFFF;
+    /* Gray 2 */
+
+    border: 1px solid #A8A8A8;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+}
+
+#password {
+    position: absolute;
+    width: 400px;
+    height: 40px;
+    left: 483px;
+    top: 385px;
+
+    /* White */
+
+    background: #FFFFFF;
+    /* Gray 2 */
+
+    border: 1px solid #A8A8A8;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+}
+
+::placeholder {
+    color: #A8A8A8;
+}
+
+#remember {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 483px;
+    top: 433px;
+
+    /* White */
+
+    background: #FFFFFF;
+    /* Gray 2 */
+
+    border: 1px solid #A8A8A8;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+#remember-texto {
+    position: absolute;
+    width: 136px;
+    height: 16px;
+    left: 511px;
+    top: 435px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+
+    /* Gray 2 */
+
+    color: #A8A8A8;
+}
+
+.botoes {
+    
+    position: absolute;
+    left: 483px;
+    top: 492px;
+
+    /* margin: 0 auto; */
+    width: 400px;
+    
+    
+    /* border: 1px solid #ccc; */
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botao-criar-conta {
+    text-decoration: none;
+    width: 180px;
+    height: 40px;
+
+    color: #49B4BB;
+    
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-criar-conta:hover {
+    background: #D9F1F3;
+}
+
+.botao-acessar {
+    width: 180px;
+    height: 40px;
+
+    border: none;
+    font: inherit;
+    border-radius: 8px;
+    
+    color: #FFFFFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-acessar:disabled {
+    background: #D9F1F3;
+}
+
+.botao-acessar:enabled {
+    background: #49B4BB;
+    cursor: pointer;
+}

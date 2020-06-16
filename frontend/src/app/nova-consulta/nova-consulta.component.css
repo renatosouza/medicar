@@ -109,7 +109,6 @@ select:focus, select:valid {
 } 
 
 .botao-confirmar {
-    text-decoration: none;
     width: 180px;
     height: 40px;
 
@@ -131,4 +130,5 @@ select:focus, select:valid {
 
 .botao-confirmar:enabled {
     background: #49B4BB;
+    cursor: pointer;
 }
