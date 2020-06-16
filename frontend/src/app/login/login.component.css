@@ -11,18 +11,10 @@ img {
     top: 235px;
 }
 
-#username {
-    position: absolute;
+.entrada {
     width: 400px;
     height: 40px;
-    left: 483px;
-    top: 325px;
-
-    /* White */
-
     background: #FFFFFF;
-    /* Gray 2 */
-
     border: 1px solid #A8A8A8;
     box-sizing: border-box;
     border-radius: 4px;
@@ -32,37 +24,25 @@ img {
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
-    display: flex;
-    align-items: center;
-}
 
-#password {
-    position: absolute;
-    width: 400px;
-    height: 40px;
-    left: 483px;
-    top: 385px;
-
-    /* White */
-
-    background: #FFFFFF;
-    /* Gray 2 */
-
-    border: 1px solid #A8A8A8;
-    box-sizing: border-box;
-    border-radius: 4px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
     display: flex;
     align-items: center;
 }
 
 ::placeholder {
     color: #A8A8A8;
+}
+
+#username {
+    position: absolute;
+    left: 483px;
+    top: 325px;
+}
+
+#password {
+    position: absolute;
+    left: 483px;
+    top: 385px;
 }
 
 #remember {
@@ -72,11 +52,7 @@ img {
     left: 483px;
     top: 433px;
 
-    /* White */
-
     background: #FFFFFF;
-    /* Gray 2 */
-
     border: 1px solid #A8A8A8;
     box-sizing: border-box;
     border-radius: 4px;
@@ -103,64 +79,48 @@ img {
 }
 
 .botoes {
-    
     position: absolute;
     left: 483px;
     top: 492px;
-
-    /* margin: 0 auto; */
     width: 400px;
-    
-    
-    /* border: 1px solid #ccc; */
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.botao-criar-conta {
+.botao {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+
+    width: 180px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.criar {
     text-decoration: none;
-    width: 180px;
-    height: 40px;
-
     color: #49B4BB;
-    
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.botao-criar-conta:hover {
+.criar:hover {
     background: #D9F1F3;
 }
 
-.botao-acessar {
-    width: 180px;
-    height: 40px;
-
+.acessar {
     border: none;
-    font: inherit;
-    border-radius: 8px;
-    
     color: #FFFFFF;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.botao-acessar:disabled {
+.acessar:disabled {
     background: #D9F1F3;
 }
 
-.botao-acessar:enabled {
+.acessar:enabled {
     background: #49B4BB;
     cursor: pointer;
 }

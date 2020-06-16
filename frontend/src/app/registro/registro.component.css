@@ -37,6 +37,7 @@ img {
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
+    
     display: flex;
     align-items: center;
 }
@@ -70,16 +71,10 @@ img {
 }
 
 .botoes {
-    
     position: absolute;
     left: 483px;
     top: 550px;
     width: 400px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
 
     display: flex;
     justify-content: space-between;
@@ -87,6 +82,11 @@ img {
 }
 
 .botao {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+
     width: 180px;
     height: 40px;
     border-radius: 8px;
@@ -102,7 +102,6 @@ img {
 
 .confirmar {
     border: none;
-    font: inherit;
     color: #FFFFFF;
 }
 
