@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { ListaConsultasComponent } from './lista-consultas/lista-consultas.component';
 import { NovaConsultaComponent } from './nova-consulta/nova-consulta.component';
 import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     ListaConsultasComponent,
     NovaConsultaComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
