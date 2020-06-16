@@ -1,10 +1,7 @@
 .lista-consultas {
-    /* position: absolute; */
     width: 800px;
     height: 788px;
     margin: 0 auto;
-    /* left: 369px;
-    top: 60px; */
 
     background: #FFFFFF;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
@@ -22,36 +19,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border: 1px solid #ccc; */
 }
 
 .titulo-lista {
-    /* position: absolute; */
-    width: 132px;
-    height: 21px;
-    /* left: 8px;
-    top: 18px; */
-
-    /* Button */
-
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
-    /* line-height: 21px; */
-    /* identical to box height */
 
     color: #444444;
 }
 
 .botao-marcar {
-    /* Rectangle 3 */
     text-decoration: none;
-    /* position: absolute; */
+    
     width: 138px;
     height: 24px;
-    /* right: 8px;
-    top: 16px; */
 
     background: #49B4BB;
     border-radius: 4px;
@@ -62,11 +45,8 @@
 }
 
 .botao-marcar .icone {
-    /* position: absolute; */
     width: 10.5px;
     height: 12px;
-    /* left: 12px;
-    top: 6px; */
 }
 
 .botao-marcar .texto {
@@ -74,21 +54,13 @@
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    /* line-height: 16px; */
-    /* display: flex;
-    align-items: center; */
-    /* text-align: center; */
 
     color: #FFFFFF;
 }
 
 
 table {
-    table-layout: fixed;
     text-align: left;
-    /* position: absolute;
-    left: 8px;
-    top: 50px; */
     width: 770px;
     margin: 0 auto;
     
@@ -105,9 +77,6 @@ th {
 }
 
 tr {
-    /* Rectangle 9 */
-
-    /* width: 611px; */
     height: 32px;
 }
 
@@ -126,26 +95,17 @@ td {
 }
 
 .botao-desmarcar {
-    /* Rectangle 3 */
     text-decoration: none;
-    /* position: absolute; */
-    /* width: 138px;
-    height: 24px; */
-    /* right: 8px;
-    top: 16px; */
 
-
+    width: 100px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .botao-desmarcar .icone {
-    /* position: absolute; */
     width: 15.5px;
     height: 17px;
-    /* left: 12px;
-    top: 6px; */
 }
 
 .botao-desmarcar .texto {
@@ -155,6 +115,4 @@ td {
     font-size: 14px;
 
     color: #49B4BB;
-
-    margin-left: 10px;
 }
