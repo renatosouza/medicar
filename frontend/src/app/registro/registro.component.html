@@ -3,15 +3,47 @@
 
     <div class="titulo">Crie sua conta</div>
 
-    <form>
-        <input class="entrada" type="text" name="username" id="username" placeholder="Nome">
-        <input class="entrada" type="email" name="email" id="email" placeholder="Email">
-        <input class="entrada" type="password" name="password" id="password" placeholder="Senha">
-        <input class="entrada" type="password" name="password2" id="password2" placeholder="Confirmar senha">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input 
+            class="entrada" 
+            type="text"
+            id="username" 
+            placeholder="Nome"
+            [formControl]="form.controls['username']"
+        >
+        <input 
+            class="entrada" 
+            type="email" 
+            id="email"
+            placeholder="Email"
+            [formControl]="form.controls['email']"
+        >
+        <input 
+            class="entrada" 
+            type="password" 
+            id="password" 
+            placeholder="Senha"
+            [formControl]="form.controls['password']"
+        >
+        <input 
+            class="entrada" 
+            type="password"
+            id="password2" 
+            placeholder="Confirmar senha"
+            [formControl]="form.controls['password2']"
+        >
+        <div class="error senhas" *ngIf="form.hasError('notSame')">
+            <p>Senhas diferentes!</p>
+        </div>
 
         <div class="botoes">
             <a class="botao cancelar" href="#">Criar Conta</a>
-            <input class="botao confirmar" type="submit" value="Confirmar">
+            <input 
+                class="botao confirmar" 
+                type="submit" 
+                value="Confirmar"
+                [disabled]="!form.valid"
+            >
         </div>
     </form>
 </div>

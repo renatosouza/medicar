@@ -2,14 +2,38 @@
     <img class="logo" src="assets/logo.png" alt="Logo">
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <input class="entrada" type="text" id="username" placeholder="Email ou Login" [formControl]="form.controls['username']">
-        <input class="entrada" type="password" id="password" placeholder="Senha" [formControl]="form.controls['password']">
-        <input type="checkbox" name="remember" id="remember" value="remember">
-        <label for="remember" id="remember-texto">Lembrar minha senha</label>
+        <input 
+            class="entrada" 
+            type="text" 
+            id="username" 
+            placeholder="Email ou Login" 
+            [formControl]="form.controls['username']"
+        >
+        <input 
+            class="entrada" 
+            type="password" 
+            id="password" 
+            placeholder="Senha" 
+            [formControl]="form.controls['password']"
+        >
+        <input 
+            type="checkbox" 
+            name="remember" 
+            id="remember" 
+            value="remember"
+        >
+        <label for="remember" id="remember-texto">
+            Lembrar minha senha
+        </label>
 
         <div class="botoes">
             <a class="botao criar" href="#">Criar Conta</a>
-            <input class="botao acessar" type="submit" value="Acessar" [disabled]="!form.valid">
+            <input 
+                class="botao acessar" 
+                type="submit" 
+                value="Acessar" 
+                [disabled]="!form.valid"
+            >
         </div>
     </form>
 </div>

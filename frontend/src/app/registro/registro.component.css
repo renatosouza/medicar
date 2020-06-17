@@ -114,3 +114,14 @@ img {
     background: #49B4BB;
     cursor: pointer;
 }
+
+.senhas {
+    position: absolute;
+    left: 483px;
+    top: 515px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    color: red;
+}
