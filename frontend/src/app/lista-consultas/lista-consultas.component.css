@@ -95,7 +95,9 @@ td {
 }
 
 .botao-desmarcar {
-    text-decoration: none;
+    border: none;
+    background: #FFFFFF;
+    cursor: pointer;
 
     width: 100px;
     display: flex;
