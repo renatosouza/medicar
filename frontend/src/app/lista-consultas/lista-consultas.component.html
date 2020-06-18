@@ -16,53 +16,16 @@
             <th></th>
         </tr>
 
-        
-        <tr>
-            <td>Cardiologia</td>
-            <td>Dr. Caio Carlos Pereira</td>
-            <td>01/01/2020</td>
-            <td>13:00</td>
+        <tr 
+            *ngFor="let consulta of consultas; let i = index"
+            [ngClass]="{gray: i%2===1}"
+        >
+            <td>{{ consulta.medico.especialidade.nome }}</td>
+            <td>{{ consulta.medico.nome }}</td>
+            <td>{{ consulta.dia.split('-').reverse().join('/') }}</td>
+            <td>{{ consulta.horario }}</td>
             <td>
-                <button class="botao-desmarcar">
-                    <img class="icone" src="assets/x.png" alt="Desmarcar consulta">
-                    <div class="texto">Desmarcar</div>
-                </button>
-            </td>
-        </tr>
-
-        <tr class="gray">
-            <td>Cardiologia</td>
-            <td>Dr. Caio Carlos Pereira</td>
-            <td>01/01/2020</td>
-            <td>13:00</td>
-            <td>
-                <button class="botao-desmarcar">
-                    <img class="icone" src="assets/x.png" alt="Desmarcar consulta">
-                    <div class="texto">Desmarcar</div>
-                </button>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Cardiologia</td>
-            <td>Dr. Caio Carlos Pereira</td>
-            <td>01/01/2020</td>
-            <td>13:00</td>
-            <td>
-                <button class="botao-desmarcar">
-                    <img class="icone" src="assets/x.png" alt="Desmarcar consulta">
-                    <div class="texto">Desmarcar</div>
-                </button>
-            </td>
-        </tr>
-
-        <tr class="gray">
-            <td>Cardiologia</td>
-            <td>Dr. Caio Carlos Pereira</td>
-            <td>01/01/2020</td>
-            <td>13:00</td>
-            <td>
-                <button class="botao-desmarcar">
+                <button class="botao-desmarcar" (click)="onDesmarcaConsulta(consulta.id)">
                     <img class="icone" src="assets/x.png" alt="Desmarcar consulta">
                     <div class="texto">Desmarcar</div>
                 </button>
