@@ -1,5 +1,5 @@
 # Acesso ao backend do Medicar
-Na pasta backend, crie um ambiente virtual (usando python 3) e instale as dependências:
+Na pasta backend, crie um ambiente virtual (usando python>=3.7) e instale as dependências:
 ```
 $ python -m venv venv
 $ source venv/bin/activate
