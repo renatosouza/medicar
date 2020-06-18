@@ -69,9 +69,19 @@ select {
     padding-left: 10px;
 }
 
-select:focus, select:valid {
+select:focus, .visited {
     color: #444444;
     background-color: #FFFFFF;
+}
+
+option {
+    color: #444444;
+    background-color: #FFFFFF;
+}
+
+option:disabled {
+    background: #F8F8F8;
+    color: #A8A8A8;
 }
 
 

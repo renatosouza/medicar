@@ -1,40 +1,53 @@
 <div class="nova-consulta">
     <div class="titulo-nova">Nova Consulta</div>
 
-    <form class="cadastra-consulta">
+    <form class="cadastra-consulta" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="inputs">
-            <select class="item" name="especialidade" id="especialidade" required>
-                <option value="" selected class="teste">Especialidade</option>
-                <option value="Pediatria">Pediatria</option>
-                <option value="Cardiologia">Pediatria</option>
-                <option value="Nefrologia">Pediatria</option>
+            <select 
+                class="item" 
+                [ngClass]="{visited: form.controls['especialidade'].valid}" 
+                id="especialidade" 
+                formControlName="especialidade"
+            >
+                <option [ngValue]="null" disabled>Especialidade</option>
+                <option *ngFor="let esp of especialidades" [ngValue]="esp">{{ esp.nome }}</option>
             </select>
-    
-            <select class="item" name="medico" id="medico" required>
-                <option value="" selected>Médico</option>
-                <option value="Gregory House">Gregory House</option>
-                <option value="James Wilson">James Wilson</option>
-                <option value="Lisa Cuddy">Lisa Cuddy</option>
+
+            <select 
+                class="item"
+                [ngClass]="{visited: form.controls['medico'].valid}"
+                id="medico" 
+                formControlName="medico"
+            >
+                <option [ngValue]="null" disabled>Médico</option>
+                <option *ngFor="let med of medicos" [ngValue]="med">{{ med.nome }}</option>
             </select>
-    
-            <select class="item" name="data" id="data" required>
-                <option value="" selected>Data</option>
-                <option value="15/06">15/06</option>
-                <option value="16/06">16/06</option>
-                <option value="17/06">17/06</option>
+
+            <select 
+                class="item"
+                [ngClass]="{visited: form.controls['data'].valid}"
+                (change)="onChangeData()"
+                id="data" 
+                formControlName="data"
+            >
+                <option [ngValue]="null" disabled>Data</option>
+                <option *ngFor="let data of datas" [ngValue]="data">{{ data.nome }}</option>
             </select>
-    
-            <select class="item" name="hora" id="hora" required>
-                <option value="" selected>Hora</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
+
+            <select 
+                class="item"
+                [ngClass]="{visited: form.controls['hora'].valid}"
+                id="hora"
+                formControlName="hora"
+            >
+                <option [ngValue]="null" disabled>Hora</option>
+                <option *ngFor="let hora of horas" [ngValue]="hora">{{ hora }}</option>
             </select>
         </div>
         
         <div class="botoes">
             <a class="botao cancelar" href="#">Cancelar</a>
-            <input class="botao confirmar" type="submit" value="Confirmar">
+            <input class="botao confirmar" type="submit" value="Confirmar" [disabled]="!form.valid">
         </div>
     </form>
 </div>
