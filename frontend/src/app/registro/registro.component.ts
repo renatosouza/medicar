@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { ApiService } from '../api.service';
+
 
 function confirmaSenhaValidation(group: FormGroup): {[s: string]: boolean} {
   if((!group) || (!group.get('password')) || (!group.get('password2'))) {
@@ -20,7 +22,7 @@ function confirmaSenhaValidation(group: FormGroup): {[s: string]: boolean} {
 export class RegistroComponent implements OnInit {
   form: FormGroup;
 
-  constructor(fb: FormBuilder) { 
+  constructor(fb: FormBuilder, private apiService: ApiService) { 
     this.form = fb.group({
       'username': [null, Validators.required],
       'email': [null, Validators.required],
@@ -32,8 +34,24 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
-    console.log(this.form.value);
+  registro(): void {
+    const dados = {
+      'username': this.form.get('username').value,
+      'email': this.form.get('email').value,
+      'password': this.form.get('password').value
+    }
+    this.apiService.registro(dados)
+      .subscribe(
+        data => {
+          console.log(data)
+          //fazer login automatico ou redirecionar pra página de login?
+          //se redirecionar, necessário mensagem de sucesso de cadastro
+        }, errors => {
+          this.form.reset()
+          //setar erro de Usuário já existente
+          //mensagem de erro
+          //erro caso email em formato errado?
+        });
   }
 
 }

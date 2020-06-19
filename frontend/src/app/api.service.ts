@@ -21,6 +21,9 @@ export class ApiService {
     return this.http.post<object>(`${this.apiUrl}/api-token-auth/`, credentials); 
   }
 
+  registro(data: object): Observable<object> {
+    return this.http.post<object>(`${this.apiUrl}/register/`, data);
+  }
   // getEspecialidades(): Observable<object[]> {
   //   return this.http.get<object[]>(`${this.apiUrl}/especialidades/`, {headers: this.header});
   // }

@@ -3,7 +3,7 @@
 
     <div class="titulo">Crie sua conta</div>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="registro()">
         <input 
             class="entrada" 
             type="text"
@@ -32,7 +32,10 @@
             placeholder="Confirmar senha"
             [formControl]="form.controls['password2']"
         >
-        <div class="error senhas" *ngIf="form.hasError('notSame')">
+        <div 
+            class="error senhas" 
+            *ngIf="form.controls['password2'].touched && form.hasError('notSame')"
+        >
             <p>Senhas diferentes!</p>
         </div>
 
