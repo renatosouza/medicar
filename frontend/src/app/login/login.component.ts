@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
+import { ApiService } from '../api.service';
+
+
+
 
 @Component({
   selector: 'app-login',
@@ -9,7 +15,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(fb: FormBuilder) { 
+  constructor(fb: FormBuilder, private apiService: ApiService, private httpClient: HttpClient) { 
     this.form = fb.group({
       'username': ['', Validators.required],
       'password': ['', Validators.required]
@@ -20,7 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
+    this.apiService.login(this.form.value)
+      .subscribe(data => {
+        this.apiService.setTokenOnHeader(data['token']);
+      }, error => console.log(error));
   }
 
 }
