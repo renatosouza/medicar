@@ -124,3 +124,14 @@ img {
     background: #49B4BB;
     cursor: pointer;
 }
+
+.error {
+    position: absolute;
+    left: 501px;
+    top: 285px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: red;
+}

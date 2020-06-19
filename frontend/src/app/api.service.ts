@@ -18,4 +18,8 @@ export class ApiService {
   login(credentials: object): Observable<object> {
     return this.http.post<object>(`${this.apiUrl}/api-token-auth/`, credentials); 
   }
+
+  // getEspecialidades(): Observable<object[]> {
+  //   return this.http.get<object[]>(`${this.apiUrl}/especialidades/`, {headers: this.header});
+  // }
 }

@@ -29,7 +29,10 @@ export class LoginComponent implements OnInit {
     this.apiService.login(this.form.value)
       .subscribe(data => {
         this.apiService.setTokenOnHeader(data['token']);
-      }, error => console.log(error));
+      }, error => {
+        this.form.reset();
+        this.form.setErrors({'Inexistente':true});
+      });
   }
 
 }

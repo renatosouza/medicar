@@ -26,6 +26,10 @@
             Lembrar minha senha
         </label>
 
+        <div class="error" *ngIf="form.hasError('Inexistente')">
+            <p>Usuário ou senha incorretos!</p>
+        </div>
+
         <div class="botoes">
             <a class="botao criar" href="#">Criar Conta</a>
             <input 
