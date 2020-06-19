@@ -1,7 +1,7 @@
 <div class="login">
     <img class="logo" src="assets/logo.png" alt="Logo">
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="login()">
         <input 
             class="entrada" 
             type="text" 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="botoes">
-            <a class="botao criar" href="#">Criar Conta</a>
+            <a class="botao criar" [routerLink]="['/registro']">Criar Conta</a>
             <input 
                 class="botao acessar" 
                 type="submit" 

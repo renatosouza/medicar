@@ -1,4 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,7 @@ import { Component, HostBinding } from '@angular/core';
 export class AppComponent {
   @HostBinding('attr.class') cssClass = 'app';
   title = 'frontend';
+
+  constructor(private router: Router) {
+  }
 }

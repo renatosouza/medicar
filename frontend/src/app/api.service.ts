@@ -7,12 +7,14 @@ import { Observable } from 'rxjs';
 export class ApiService {
   apiUrl = 'http://localhost:8000'
   header: HttpHeaders;
+  loggedIn: boolean;
 
   constructor(private http: HttpClient) { 
   }
 
   setTokenOnHeader(token: string) {
     this.header = new HttpHeaders({Authorization: `Token ${token}`});
+    this.loggedIn = true;
   }
 
   login(credentials: object): Observable<object> {
