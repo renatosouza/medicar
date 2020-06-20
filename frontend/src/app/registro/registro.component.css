@@ -8,13 +8,13 @@ img {
     height: 50px;
 
     left: 483px;
-    top: 179px;
+    top: 169px;
 }
 
 .titulo {
     position: absolute;
     left: 483px;
-    top: 249px;
+    top: 239px;
 
     font-family: Roboto;
     font-style: normal;
@@ -115,13 +115,23 @@ img {
     cursor: pointer;
 }
 
+.error {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    color: red;
+}
+
+.existente {
+    position: absolute;
+    left: 483px;
+    top: 250px;
+    font-size: 14px;
+}
+
 .senhas {
     position: absolute;
     left: 483px;
     top: 515px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
     font-size: 12px;
-    color: red;
 }

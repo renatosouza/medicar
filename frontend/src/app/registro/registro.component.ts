@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../api.service';
 
@@ -22,7 +23,7 @@ function confirmaSenhaValidation(group: FormGroup): {[s: string]: boolean} {
 export class RegistroComponent implements OnInit {
   form: FormGroup;
 
-  constructor(fb: FormBuilder, private apiService: ApiService) { 
+  constructor(fb: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.form = fb.group({
       'username': [null, Validators.required],
       'email': [null, Validators.required],
@@ -32,25 +33,29 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
   registro(): void {
     const dados = {
-      'username': this.form.get('username').value,
-      'email': this.form.get('email').value,
-      'password': this.form.get('password').value
+      username: this.form.get('username').value,
+      email: this.form.get('email').value,
+      password: this.form.get('password').value
     }
     this.apiService.registro(dados)
       .subscribe(
         data => {
           console.log(data)
-          //fazer login automatico ou redirecionar pra página de login?
-          //se redirecionar, necessário mensagem de sucesso de cadastro
+          const { email, ...credenciais } = dados;
+          this.apiService.login(credenciais)
+            .subscribe(loginData => {
+              localStorage.setItem('token', loginData['token']);
+              localStorage.setItem('username', credenciais.username);
+              this.router.navigate(['home']);
+            })
         }, errors => {
-          this.form.reset()
-          //setar erro de Usuário já existente
-          //mensagem de erro
-          //erro caso email em formato errado?
+          this.form.reset();
+          this.form.setErrors({'Existente': true});
         });
   }
 

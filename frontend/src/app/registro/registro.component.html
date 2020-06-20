@@ -4,6 +4,10 @@
     <div class="titulo">Crie sua conta</div>
 
     <form [formGroup]="form" (ngSubmit)="registro()">
+        <div class="error existente" *ngIf="form.hasError('Existente')">
+            <p>Usuário já existe!</p>
+        </div>
+
         <input 
             class="entrada" 
             type="text"
@@ -34,13 +38,13 @@
         >
         <div 
             class="error senhas" 
-            *ngIf="form.controls['password2'].touched && form.hasError('notSame')"
+            *ngIf="form.controls['password2'].dirty && form.hasError('notSame')"
         >
             <p>Senhas diferentes!</p>
         </div>
 
         <div class="botoes">
-            <a class="botao cancelar" href="#">Criar Conta</a>
+            <a class="botao cancelar" [routerLink]="['/login']">Cancelar</a>
             <input 
                 class="botao confirmar" 
                 type="submit" 
