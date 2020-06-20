@@ -2,6 +2,10 @@
     <img class="logo" src="assets/logo.png" alt="Logo">
 
     <form [formGroup]="form" (ngSubmit)="login()">
+        <div class="error" *ngIf="form.hasError('Inexistente')">
+            <p>Usuário ou senha incorretos!</p>
+        </div>
+
         <input 
             class="entrada" 
             type="text" 
@@ -25,10 +29,6 @@
         <label for="remember" id="remember-texto">
             Lembrar minha senha
         </label>
-
-        <div class="error" *ngIf="form.hasError('Inexistente')">
-            <p>Usuário ou senha incorretos!</p>
-        </div>
 
         <div class="botoes">
             <a class="botao criar" [routerLink]="['/registro']">Criar Conta</a>

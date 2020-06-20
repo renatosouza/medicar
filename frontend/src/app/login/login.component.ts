@@ -27,11 +27,12 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.apiService.login(this.form.value)
       .subscribe(data => {
-        this.apiService.setTokenOnHeader(data['token']);
+        localStorage.setItem('token', data['token']);
+        localStorage.setItem('username', this.form.get('username').value);
         this.router.navigate(['home']);
       }, error => {
         this.form.reset();
-        this.form.setErrors({'Inexistente':true});
+        this.form.setErrors({'Inexistente': true});
       });
   }
 
