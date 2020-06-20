@@ -6,15 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ApiService {
   apiUrl = 'http://localhost:8000'
-  header: HttpHeaders;
   loggedIn: boolean;
 
   constructor(private http: HttpClient) { 
-  }
-
-  setTokenOnHeader(token: string) {
-    this.header = new HttpHeaders({Authorization: `Token ${token}`});
-    this.loggedIn = true;
   }
 
   login(credentials: object): Observable<object> {
@@ -23,6 +17,18 @@ export class ApiService {
 
   registro(data: object): Observable<object> {
     return this.http.post<object>(`${this.apiUrl}/register/`, data);
+  }
+
+  getConsultas(): Observable<object[]> {
+    const token = localStorage.getItem('token');
+    const header = new HttpHeaders({Authorization: `Token ${token}`});
+    return this.http.get<object[]>(`${this.apiUrl}/consultas/`, {headers: header});
+  }
+
+  deleteConsulta(id: number): Observable<{}> {
+    const token = localStorage.getItem('token');
+    const header = new HttpHeaders({Authorization: `Token ${token}`});
+    return this.http.delete(`${this.apiUrl}/consultas/${id}`, {headers: header});
   }
   // getEspecialidades(): Observable<object[]> {
   //   return this.http.get<object[]>(`${this.apiUrl}/especialidades/`, {headers: this.header});

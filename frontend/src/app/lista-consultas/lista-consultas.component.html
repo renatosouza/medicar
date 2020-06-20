@@ -7,8 +7,10 @@
             <div class="texto">Nova consulta</div>
         </a>
     </div>
-    
-    <table>
+     
+    <p *ngIf="!loadedConsultas">Loading...</p>
+
+    <table *ngIf="loadedConsultas">
         <tr>
             <th>ESPECIALIDADE</th>
             <th>PROFISSIONAL</th>

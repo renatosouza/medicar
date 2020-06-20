@@ -45,7 +45,6 @@ export class RegistroComponent implements OnInit {
     this.apiService.registro(dados)
       .subscribe(
         data => {
-          console.log(data)
           const { email, ...credenciais } = dados;
           this.apiService.login(credenciais)
             .subscribe(loginData => {
