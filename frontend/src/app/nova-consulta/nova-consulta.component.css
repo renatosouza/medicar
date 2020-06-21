@@ -32,8 +32,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid #ccc; */
     
+}
+
+.error {
+    margin-left: 150px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+
+    color: red;
+
 }
 
 .inputs {

@@ -1,38 +1,59 @@
 <app-header></app-header>
 <div class="nova-consulta">
     <div class="titulo-nova">Nova Consulta</div>
-
-    <form class="cadastra-consulta" [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+    <div class="error" *ngIf="form.hasError('Indisponivel')">
+        <p>Horário já ocupado!</p>
+    </div>
+    
+    <form class="cadastra-consulta" [formGroup]="form" (ngSubmit)="criaConsulta()">
         <div class="inputs">
             <select 
                 class="item" 
-                [ngClass]="{visited: form.controls['especialidade'].valid}" 
+                [ngClass]="{visited: form.controls['especialidade'].valid}"
+                (change)="onChangeEspecialidade($event.target.value)"
                 id="especialidade" 
                 formControlName="especialidade"
             >
-                <option [ngValue]="null" disabled>Especialidade</option>
-                <option *ngFor="let esp of especialidades" [ngValue]="esp">{{ esp.nome }}</option>
+                <option [value]="null" disabled>Especialidade</option>
+                <option 
+                    *ngFor="let especialidade of especialidades" 
+                    [value]="especialidade.id"
+                >
+                    {{ especialidade.nome }}
+                </option>
             </select>
 
             <select 
                 class="item"
                 [ngClass]="{visited: form.controls['medico'].valid}"
+                (change)="onChangeMedico($event.target.value)"
                 id="medico" 
                 formControlName="medico"
             >
-                <option [ngValue]="null" disabled>Médico</option>
-                <option *ngFor="let med of medicos" [ngValue]="med">{{ med.nome }}</option>
+                <option [value]="null" disabled>Médico</option>
+                <option 
+                    *ngFor="let medico of medicos" 
+                    [value]="medico.id"
+                >
+                    {{ medico.nome }}
+                </option>
             </select>
 
             <select 
                 class="item"
                 [ngClass]="{visited: form.controls['data'].valid}"
-                (change)="onChangeData()"
+                (change)="onChangeAgenda($event.target.value)"
                 id="data" 
                 formControlName="data"
             >
-                <option [ngValue]="null" disabled>Data</option>
-                <option *ngFor="let data of datas" [ngValue]="data">{{ data.nome }}</option>
+                <option [value]="null" disabled>Data</option>
+                <option 
+                    *ngFor="let agenda of agendas" 
+                    [value]="agenda.id"
+                >
+                    {{ agenda.dia.split('-').reverse().join('/') }}
+                </option>
             </select>
 
             <select 
@@ -41,13 +62,19 @@
                 id="hora"
                 formControlName="hora"
             >
-                <option [ngValue]="null" disabled>Hora</option>
-                <option *ngFor="let hora of horas" [ngValue]="hora">{{ hora }}</option>
+                <option [value]="null" disabled>Hora</option>
+                <option 
+                    *ngFor="let horario of horarios" 
+                    [value]="horario"
+                >
+                    {{ horario }}
+                </option>
             </select>
         </div>
+
         
         <div class="botoes">
-            <a class="botao cancelar" href="#">Cancelar</a>
+            <a class="botao cancelar" [routerLink]="['/home']">Cancelar</a>
             <input class="botao confirmar" type="submit" value="Confirmar" [disabled]="!form.valid">
         </div>
     </form>

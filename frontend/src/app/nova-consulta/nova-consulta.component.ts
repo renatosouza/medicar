@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { ApiService } from '../api.service';
+
 
 @Component({
   selector: 'app-nova-consulta',
@@ -7,59 +11,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./nova-consulta.component.css']
 })
 export class NovaConsultaComponent implements OnInit {
-  especialidades = [
-    {
-      id: 1,
-      nome: 'Pediatria'
-    },
-    {
-      id: 2,
-      nome: 'Nefrologia'
-    },
-    {
-      id: 3,
-      nome: 'Cardiologia'
-    },
-  ];
-
-  medicos = [
-    {
-      id: 1,
-      nome: 'Gregory House'
-    },
-    {
-      id: 2,
-      nome: 'James Wilson'
-    },
-    {
-      id: 3,
-      nome: 'Lisa Cuddy'
-    },
-  ];
-
-  datas = [
-    {
-      id: 1,
-      nome: '20/06/2020',
-      horas: ['10:00', '11:00', '12:00']
-    },
-    {
-      id: 2,
-      nome: '21/06/2020',
-      horas: ['13:00', '14:00', '15:00']
-    },
-    {
-      id: 3,
-      nome: '22/06/2020',
-      horas: ['16:00', '17:00', '18:00']
-    },
-  ];
-
-  horas: String[];
-
+  especialidades = [];
+  especialidadeSelecionada: object;
+  medicos = [];
+  medicoSelecionado: object;
+  agendas = [];
+  agendaSelecionada: object;
+  horarios = [];
+  horarioSelecionado: object;
   form: FormGroup;
 
-  constructor(fb: FormBuilder) { 
+  constructor(fb: FormBuilder, private apiService: ApiService, private router: Router) { 
     this.form = fb.group({
       'especialidade': [null, Validators.required],
       'medico': [null, Validators.required],
@@ -69,15 +31,49 @@ export class NovaConsultaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.apiService.getEspecialidades()
+      .subscribe(data => this.especialidades = [...data]);
   }
 
-  onSubmit(): void {
-    console.log(this.form.value);
+  onChangeEspecialidade(especialidadeId: string) {
+    const id = parseInt(especialidadeId);
+
+    this.apiService.getMedicosPorEspecialidade(id)
+      .subscribe(data => this.medicos = [...data]);
+
+    this.agendas = [];
+    this.horarios = [];
   }
 
-  onChangeData(): void {
-    const data_selecionada = this.form.get('data').value;
-    this.horas = [...data_selecionada.horas];
+  onChangeMedico(medicoId: string) {
+    const id = parseInt(medicoId);
+
+    this.apiService.getAgendasPorMedico(id)
+      .subscribe(data => this.agendas = [...data]);
+
+    this.horarios = [];
   }
 
+  onChangeAgenda(agendaId: string) {
+    const id = parseInt(agendaId);
+    
+    this.agendaSelecionada = this.agendas
+      .find(medico => medico.id === id);
+
+    this.horarios = [...this.agendaSelecionada['horarios']];
+  }
+
+  criaConsulta(): void {
+    const dados = {
+      agenda_id: parseInt(this.form.get('data').value),
+      horario: this.form.get('hora').value
+    }
+    this.apiService.createConsulta(dados)
+      .subscribe(data => {
+        this.router.navigate(['home']);
+      }, errors => {
+        // this.form.reset();
+        this.form.setErrors({'Indisponivel': true});
+      });
+  }
 }
