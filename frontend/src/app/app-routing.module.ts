@@ -6,11 +6,13 @@ import { NovaConsultaComponent } from './nova-consulta/nova-consulta.component';
 import { RegistroComponent } from './registro/registro.component';
 import { LoginComponent } from './login/login.component';
 
+import { LoggedInGuard } from './logged-in.guard';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: ListaConsultasComponent },
-  { path: 'nova', component: NovaConsultaComponent },
+  { path: 'home', component: ListaConsultasComponent, canActivate: [LoggedInGuard] },
+  { path: 'nova', component: NovaConsultaComponent, canActivate: [LoggedInGuard] },
   { path: 'registro', component: RegistroComponent },
 
   { path: 'login', component: LoginComponent },
@@ -18,6 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [LoggedInGuard]
 })
 export class AppRoutingModule { }
