@@ -2,13 +2,14 @@
 <div class="lista-consultas">
     <div class="top-lista">
         <div class="titulo-lista">Consulta Clínica</div>
-        <a class="botao-marcar" href="#">
+        <a class="botao-marcar" [routerLink]="['/nova']">
             <img class="icone" src="assets/mais.png" alt="Marcar consulta">
             <div class="texto">Nova consulta</div>
         </a>
     </div>
      
-    <p *ngIf="!loadedConsultas">Loading...</p>
+    <img class = "loader" src="assets/loader.gif" *ngIf="!loadedConsultas" alt="Loader">
+    <!-- <p *ngIf="!loadedConsultas">Loading...</p> -->
 
     <table *ngIf="loadedConsultas">
         <tr>
