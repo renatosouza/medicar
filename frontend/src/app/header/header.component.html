@@ -2,7 +2,7 @@
     <img src="assets/logo.png" alt="Logo">
     <div class="top-right">
         <div class="user-logged">{{ usuario }}</div>
-        <a class="logout" [routerLink]="['/login']">Desconectar</a>
+        <button class="logout" (click)="onLogout()">Desconectar</button>
     </div>
 </div>
 

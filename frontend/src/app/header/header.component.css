@@ -6,7 +6,6 @@
     height: 50px;
     justify-content: space-between;
     align-items: center;
-    /* border: 1px solid #ccc; */
 }
 
 img {
@@ -33,24 +32,14 @@ img {
 }
 
 .user-logged {
-    /* position: absolute; */
-    /* width: 85px; */
-    /* height: 13px; */
-    /* left: 792px;
-    top: 24px; */
-
     color: #A8A8A8;
 }
 
 .logout {
-    text-decoration: none;
-
-    /* position: absolute; */
-    /* width: 79px; */
-    /* height: 13px; */
-    /* left: 917px;
-    top: 24px; */
-
+    border: none;
+    font: inherit;
+    background: inherit;
+    cursor: pointer;
 
     color: #49B4BB;
 }

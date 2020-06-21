@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
 
 
 function confirmaSenhaValidation(group: FormGroup): {[s: string]: boolean} {
@@ -23,7 +24,7 @@ function confirmaSenhaValidation(group: FormGroup): {[s: string]: boolean} {
 export class RegistroComponent implements OnInit {
   form: FormGroup;
 
-  constructor(fb: FormBuilder, private apiService: ApiService, private router: Router) { 
+  constructor(fb: FormBuilder, private apiService: ApiService, private router: Router, private authService: AuthService) { 
     this.form = fb.group({
       'username': [null, Validators.required],
       'email': [null, Validators.required],
@@ -33,7 +34,6 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.clear();
   }
 
   registro(): void {
@@ -48,8 +48,7 @@ export class RegistroComponent implements OnInit {
           const { email, ...credenciais } = dados;
           this.apiService.login(credenciais)
             .subscribe(loginData => {
-              localStorage.setItem('token', loginData['token']);
-              localStorage.setItem('username', credenciais.username);
+              this.authService.setLogin(loginData['token'], credenciais.username);
               this.router.navigate(['home']);
             })
         }, errors => {

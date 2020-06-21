@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { ApiService } from './api.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

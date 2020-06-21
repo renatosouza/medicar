@@ -101,7 +101,7 @@ td {
 
 .botao-desmarcar {
     border: none;
-    background: #FFFFFF;
+    background: inherit;
     cursor: pointer;
 
     width: 100px;
