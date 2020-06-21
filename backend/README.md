@@ -1,60 +1,3 @@
-# Acesso ao backend do Medicar
-Na pasta backend, crie um ambiente virtual (usando python>=3.7) e instale as dependências:
-```
-$ python -m venv venv
-$ source venv/bin/activate
-(venv)$ pip install -r requirements.txt
-```
-
-Depois da instalação das dependências:
-```
-(venv)$ python manage.py migrate
-(venv)$ python manage.py runserver
-```
-
-Usando o local host (`http://127.0.0.1:8000/` ou `http://localhost:8000/`) você pode acessar a interface administrativa e a API.
-
-### Testes
-Para executar os testes:
-```
-(venv)$ python manage.py test api/tests
-```
-
-### Criar usuário administrador
-Para criar o usuário administrador, aquele que pode acessar a interface administrativa, dê o comando a seguir e digite os dados pedidos:
-```
-(venv)$ python manage.py createsuperuser
-```
-
-
-## Interface administrativa
-A interface administrativa pode ser acessada através da url http://localhost:8000/admin/. Ela contém as funcionalidades a seguir:
-
-
-### Cadastrar especialidades
-É possível cadastrar as especialidades médicas (ex: CARDIOLOGIA, PEDIATRIA) que a clínica atende fornecendo as seguintes informações:
-
-* **Nome:** nome da especialidade médica (obrigatório)
-
-
-### Cadastrar médicos
-É possível cadastrar os médicos que podem atender na clínica fornecendo as seguintes informações:
-
-* **Nome:** Nome do médico (obrigatório)
-* **CRM:** Número do médico no conselho regional de medicina (obrigatório)
-* **E-mail:** Endereço de e-mail do médico
-* **Telefone:** Telefone do médico
-* **Especialidade:** Especialidade na qual o médico atende
-
-
-### Criar agenda para médico
-É possível criar uma agenda para um médico em um dia específico fornecendo as seguintes informações:
-
-* **Médico:** Médico que será alocado (obrigatório)
-* **Dia:** Data de alocação do médico (obrigatório)
-* **Horários:** Lista de horários na qual o médico deverá ser alocado para o dia especificado (obrigatório)
-
-
 ## API
 A API contém os seguintes endpoints:
 
@@ -64,7 +7,7 @@ Cadastra usuários no sistema
 
 #### Requisição
 ```
-POST /especialidades/
+POST /register/
 {
   "username": "renato",
   "email": "renato@renato.com",
@@ -248,7 +191,7 @@ Lista todas as agendas disponíveis na clínica
 
 #### Requisição
 ```
-GET /consultas/
+GET /agendas/
 ```
 
 #### Retorno
